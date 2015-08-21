@@ -70,7 +70,6 @@ if [ -f "$LOCAL_SOURCE_DIR/build.gradle" ]; then
     copy_artifacts "$ARTIFACT_DIR"
     
     # cleanup
-    gradle clean
     if [ -d "$HOME/.gradle/caches" ]; then
       rm -r "$HOME/.gradle/caches"
     fi
