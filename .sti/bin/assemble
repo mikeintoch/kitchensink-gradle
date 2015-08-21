@@ -12,7 +12,7 @@ DATA_DIR=${DATA_DIR-$JBOSS_HOME/data}
 
 # the subdirectory within LOCAL_SOURCE_DIR from where we should copy build
 # artifacts (*.war, *.jar)
-ARTIFACT_DIR=${ARTIFACT_DIR-target}
+ARTIFACT_DIR=build/libs
 
 # insert settings for HTTP proxy into settings.xml if supplied
 function configure_proxy() {
@@ -61,6 +61,8 @@ if [ -f "$LOCAL_SOURCE_DIR/build.gradle" ]; then
     if [ -z "$GRADLE_ARGS" ]; then
         export GRADLE_ARGS="clean war -x test"
     fi
+    
+    cd $LOCAL_SOURCE_DIR
     
     echo "execute gradle build"
     gradle $GRADLE_ARGS
