@@ -5,11 +5,22 @@ Create -> git url: https://github.com/kenthua/kitchensink -> Next -> jboss eap 6
 Command line  
     oc new-app --template=eap6-basic-sti --param=GIT_URI=https://github.com/kenthua/kitchensink.git --param=GIT_REF=master --param=GIT_CONTEXT_DIR="" --param=APPLICATION_NAME=kitchensink
 
+# Conversion from pom.xml to build/settings.gradle
+
+    gradle init --type pom
+
+Cleanup build.gradle file    
+  
+# Testing (How did I test)
+
+    sti build git://github.com/kenthua/kitchensink-gradle kenthua/ose-eap-extra test-k
 
 # Gradle build
 
-gradle clean war -x test
+    gradle clean war -x test -PwarName=ROOT.war
 
+
+=============
 
 
 kitchensink: Assortment of technologies including Arquillian
