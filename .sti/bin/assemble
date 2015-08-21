@@ -52,19 +52,19 @@ function copy_artifacts() {
 # Copy the source for compilation
 cp -ad /tmp/src/* $LOCAL_SOURCE_DIR
 
-# if a build.gradle is present
+# If a build.gradle is present to run a gradle build
 if [ -f "$LOCAL_SOURCE_DIR/build.gradle" ]; then
-    echo "Gradle file found"
     
-    echo "Using $(gradle -v)"
-    
+    pushd $LOCAL_SOURCE_DIR &> /dev/null
+
     if [ -z "$GRADLE_ARGS" ]; then
-        export GRADLE_ARGS="clean war -x test"
+        export GRADLE_ARGS="clean war -x test -PwarName=ROOT.war"
     fi
     
-    cd $LOCAL_SOURCE_DIR
-    
-    echo "execute gradle build"
+    echo "Gradle file found, using these gradle args 'gradle ${GRADLE_ARGS}'"    
+    echo "Using $(gradle -v)"
+        
+    echo "Execute gradle build"
     gradle $GRADLE_ARGS
     
     copy_artifacts "$ARTIFACT_DIR"
