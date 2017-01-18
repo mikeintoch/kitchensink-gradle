@@ -15,8 +15,6 @@ war {
 }
 
 repositories {
-        
-     maven { url "http://maven.repository.redhat.com/earlyaccess/all/" }
      maven { url "http://maven.repository.redhat.com/techpreview/all" }
      maven { url "http://repo.maven.apache.org/maven2" }
 }
